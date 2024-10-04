@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Betting Tips{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <!-- Navbar (Global) -->
+    <div class="navbar">
+        <h1>TheBetSlip</h1>
+        <div class="navbar-right">
+            <a href="{% url 'match_list1' %}">Today's Tips</a>
+            <a href="{% url 'yesterdays_tips' %}">Yesterday's Tips</a>
+            <a href="#">About</a>
+            <a href="#">Subscribe</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
+
+</div>
+<!-- Hamburger icon for mobile -->
+<div class="menu-icon" onclick="toggleMenu()">☰</div>
+</div>
+
+    <!-- Dropdown Menu (for mobile) -->
+    <div id="menu-content">
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Subscribe(VIP)</a>
+        <a href="#">Old Tickets</a>
+    </div>
+
+
+    <!-- Backdrop Section -->
+    <div class="backdrop-section">
+        Betting Tips & Predictions
+        <img src="{% static 'images/backdrop.png' %}" alt="Backdrop" />
+    </div>
+
+
+    <!-- Main Content (Dynamic) -->
+    <div class="content">
+        {% block content %}
+        <!-- Dynamic content will go here -->
+        {% endblock %}
+    </div>
+
+    <!-- Footer (Global) -->
+    <footer>
+        &copy; 2024 TheBetSlip. All Rights Reserved.
+    </footer>
+
+    <!-- JavaScript for menu toggle on mobile -->
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu-content');
+            menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+        }
+
+        document.querySelectorAll('.code').forEach(function (el) {
+            el.addEventListener('click', function () {
+                navigator.clipboard.writeText(el.textContent);
+                alert('Booking code copied: ' + el.textContent);
+            });
+        });
+    </script>
+
+
+</body>
+</html>

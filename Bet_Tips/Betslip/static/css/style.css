@@ -1,0 +1,188 @@
+/* static/css/style.css */
+
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #2a2a2a; /* Dark background */
+    color: #f5f5f5; /* Light text */
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #343a40; /* Dark grey */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.navbar h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #34e066; /* Green for branding */
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-right a {
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+.menu-icon {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+#menu-content {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 15px;
+    background-color: #343a40;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 2; /* Ensures the dropdown is above everything */
+}
+
+/* Dropdown styling */
+select {
+    background-color: #343a40;
+    color: white;
+    padding: 10px;
+    border: none;
+    margin-right: 10px;
+}
+
+/* Responsive behavior for small screens */
+@media (max-width: 768px) {
+    .navbar-right {
+        display: none;
+    }
+
+    .menu-icon {
+        display: block;
+        margin-left: auto; /* Pushes the icon to the right */
+    }
+}
+
+#menu-content a {
+    display: block;
+    color: white;
+    padding: 5px 10px;
+}
+
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #3b3b3b; /* Dark grey table */
+    color: rgb(245, 244, 248);
+}
+
+table th {
+    background-color: #404040;
+    color: white;
+    padding: 15px;
+    text-align: left;
+}
+
+table td {
+    padding: 15px;
+    border-bottom: 1px solid #484848;
+    font-size: 14px;
+}
+
+table td .match {
+    font-weight: bold;
+}
+
+table td a {
+    color: #34e066; /* Green links */
+    text-decoration: none;
+}
+
+table td a:hover {
+    text-decoration: underline;
+}
+
+/* Button Styling */
+.btn-bet {
+    background-color: #ffcc00;
+    color: black;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-bet:hover {
+    background-color: #ff9900;
+}
+
+/* Header Buttons (Today’s Tips, Tomorrow’s Tips) */
+.header-btn {
+    background-color: #34e066; /* Green */
+    color: white;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.header-btn:hover {
+    background-color: #2b9e55;
+}
+
+/* Footer */
+footer {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+}
+
+/* Styling for Backdrop Section */
+.backdrop-section {
+    position: relative;
+    height: 50vh; /* 50% of the viewport height */
+    width: 100%; /* Full width */
+    overflow: hidden; /* Ensure the image doesn't overflow */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(12, 12, 13);
+    font-size: 2rem;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.backdrop-section img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover; /* Ensure the image covers the div without distorting */
+    z-index: -1; /* Make sure the image is behind the text */
+}

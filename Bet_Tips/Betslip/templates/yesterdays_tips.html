@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ page_title }}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ page_title }}</h1>
+
+
+
+
+{% load static %}
+
+
+   
+
+    <!-- Table of Matches -->
+    <table>
+        <thead>
+            <tr>
+                <th>Match</th>
+                <th>Selection</th>
+                <th>Outcome</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for match in matches %}
+            <tr>
+                <td class="match">{{ match.team_1 }} vs {{ match.team_2 }}</td>
+                <td>{{ match.selection }}</td>
+                <td class="outcome">
+                    {% if match.result == 'win' %}
+                        <span class="win">✅</span>
+                    {% elif match.result == 'lose' %}
+                        <span class="lose">❌</span>
+                    {% else %}
+                        <span class="pending">Pending</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <button class="btn-bet">BET</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>
+{% endblock %}

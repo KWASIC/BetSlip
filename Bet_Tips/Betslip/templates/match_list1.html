@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ page_title }}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ page_title }}</h1>
+
+    <!-- Filters Section -->
+    <div class="filters">
+        <select onchange="window.location.href=this.value;">
+            <option value="#">VIP Odds</option>
+            <option value="{% url 'vip_odds' '2-5' %}">2.0 - 5.0</option>
+            <option value="{% url 'vip_odds' '5+' %}">5+</option>
+            <option value="{% url 'vip_odds' '10+' %}">10+</option>
+            <option value="{% url 'vip_odds' '20+' %}">20+</option>
+        </select>
+
+        <a href="{% url 'yesterdays_tips' %}">
+            <button class="header-btn">Yesterday's Tip</button>
+        </a>
+        <a href="{% url 'match_list1' %}">
+            <button class="header-btn">Today's Tip</button>
+        </a>
+    </div>
+
+    <!-- Table of Matches -->
+    <table>
+        <thead>
+            <tr>
+                <th>Match</th>
+                <th>Selection</th>
+                <th>Outcome</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for match in matches %}
+            <tr>
+                <td class="match">{{ match.team_1 }} vs {{ match.team_2 }}</td>
+                <td>{{ match.selection }}</td>
+                <td class="outcome">
+                    {% if match.result == 'win' %}
+                        <span class="win">✅</span>
+                    {% elif match.result == 'lose' %}
+                        <span class="lose">❌</span>
+                    {% else %}
+                        <span class="pending">Pending</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <button class="btn-bet">BET</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Booking Codes</h2>
+        <ul>
+            {% for code in booking_codes %}
+            <li>{{ code.site_name }}: <span class="code">{{ code.code }}</span></li>
+            {% endfor %}
+        </ul>
+
+
+{% endblock %}

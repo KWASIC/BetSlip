@@ -1,0 +1,108 @@
+{% load static %}
+<!-- tips/templates/tips/match_list.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheBetSlip - Betting Tips</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <!-- Navbar Section -->
+    <div class="navbar">
+        <h1>TheBetSlip</h1>
+        <div class="navbar-right">
+            <a href="#">About</a>
+            <a href="#">Old Tickets</a>
+            <a href="#">Subscribe</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    </div>
+
+    <!-- Dropdown Menu (for mobile) -->
+    <div id="menu-content">
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Subscribe(VIP)</a>
+        <a href="#">Old Tickets</a>
+    </div>
+
+    <!-- Backdrop Section -->
+    <div class="backdrop-section">
+        Betting Tips & Predictions
+        <img src="{% static 'images/backdrop.png' %}" alt="Backdrop" />
+    </div>
+
+    <!-- Filters Section -->
+    <div class="filters">
+        <select>
+            <option>VIP Odds</option>
+            <option>2.0 - 5.0</option>
+            <option>5+</option>
+            <option>10+</option>
+            <option>20+</option>
+        </select>
+
+        <button class="header-btn">Yesterday's Tips</button>
+        <button class="header-btn">Correct Score</button>
+    </div>
+
+    <!-- Table of Matches -->
+    <div class="match-table">
+        <table>
+            <tr>
+                <th>Match</th>
+                <th>Selection</th>
+                <th>Outcome</th>
+            </tr>
+            {% for match in matches %}
+            <tr>
+                <td class="match">{{ match.team_1 }} vs {{ match.team_2 }}</td>
+                <td>{{ match.selection }}</td>
+                <td>
+                    {% if match.result == 'win' %}
+                        ✅
+                    {% elif match.result == 'lose' %}
+                        ❌
+                    {% else %}
+                        Pending
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+        <h2>Booking Codes</h2>
+        <ul>
+            {% for code in booking_codes %}
+            <li>{{ code.site_name }}: <span class="code">{{ code.code }}</span></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        &copy; 2024 TheBetSlip. All Rights Reserved.
+    </footer>
+
+    <!-- JavaScript for menu toggle on mobile -->
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu-content');
+            menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+        }
+
+        document.querySelectorAll('.code').forEach(function (el) {
+            el.addEventListener('click', function () {
+                navigator.clipboard.writeText(el.textContent);
+                alert('Booking code copied: ' + el.textContent);
+            });
+        });
+    </script>
+
+</body>
+</html>
